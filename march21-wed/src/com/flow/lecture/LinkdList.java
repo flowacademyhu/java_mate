@@ -85,7 +85,7 @@ public class LinkdList {
     }
 
     public void insertBefore(int newValue) {
-        if (isEmpty() && isFirst()) {
+        if (isEmpty() || isFirst()) {
             insertFirst(newValue);
         } else {
             Node newNode = new Node(newValue, actual.prev, actual);
@@ -96,7 +96,7 @@ public class LinkdList {
     }
 
     public void insertAfter(int newValue) {
-        if (isEmpty() && isLast()) {
+        if (isEmpty() || isLast()) {
             insertLast(newValue);
         } else {
             stepBackward();
