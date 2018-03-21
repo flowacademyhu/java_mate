@@ -68,10 +68,10 @@ public class Stock {
                 temp.append("T;").append(dairyProduct.getDueDate()).append(";").append(dairyProduct.getProdDate()).append(";").append(dairyProduct.getName()).append("\n");
                 try {
                     if (dairyProduct.good()) {
-                        toShelf.write(temp.toString());
+                        toShelf.append(temp.toString());
                     }
                 } catch (Bad bad) {
-                    toTrash.write(temp.toString());
+                    toTrash.append(temp.toString());
                     bad.printStackTrace();
                 }
             }
