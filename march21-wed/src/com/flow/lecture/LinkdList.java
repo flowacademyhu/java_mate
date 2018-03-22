@@ -109,8 +109,10 @@ public class LinkdList {
             if (isFirst()) {
                 actual = head.next;
                 head = head.next;
+                head.prev = null;
             }
             if (head != null) {
+                head = head.next;
                 head.prev = null;
             } else {
                 tail = null;
@@ -127,6 +129,12 @@ public class LinkdList {
                 actual = tail.prev;
                 tail = tail.prev;
                 tail.next = null;
+            }
+            if (tail != null) {
+                tail = tail.prev;
+                tail.next = null;
+            } else {
+                head = null;
             }
         }
     }
@@ -150,12 +158,13 @@ public class LinkdList {
     public boolean contains(int searchValue) {
         if (!isEmpty()) {
             actual = head;
-            while (!isLast()) {
+            do {
                 if (actual.value == searchValue) {
                     return true;
                 }
                 actual = actual.next;
-            }
+            } while (!isLast());
+
         }
         return false;
     }
@@ -163,13 +172,13 @@ public class LinkdList {
     public String toString() {
         if (!isEmpty()) {
             StringBuilder temp = new StringBuilder();
-
+            temp.append("[");
             actual = head;
             while (!isLast()) {
                 temp.append(actual.value).append(", ");
                 actual = actual.next;
             }
-            temp.append(actual.value);
+            temp.append(actual.value).append("]");
             return temp.toString();
 
         }
@@ -179,11 +188,10 @@ public class LinkdList {
     public int getSize() {
         if (!isEmpty()) {
             actual = head;
-            while (!isLast()) {
+            do {
                 size++;
                 actual = actual.next;
-            }
-            size++;
+            } while (!isLast());
             return size;
         }
         return 0;
